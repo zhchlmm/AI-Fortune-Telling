@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="hero card">
+    <view class="card-title">关于我们</view>
+    <view class="muted">以传统命理文化为根基，结合现代 AI 能力，提供更清晰、更稳健的参考建议。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">传统理论来源与依据</view>
+    <view class="para">我们的分析框架参考了中国传统术数与民俗文化中的经典思路，主要包括：</view>
+    <view class="item">1. 生辰八字：以天干地支、五行生克、十神关系为核心，分析个体禀赋与阶段节律。</view>
+    <view class="item">2. 算卦算命：借鉴《易经》象数与卦理的“变易、简易、不易”思想，关注趋势与决策参考。</view>
+    <view class="item">3. 看相方法：参考传统相学关于面相、体态与气色的经验性观察逻辑。</view>
+    <view class="item">4. 风水理念：结合环境布局、方位与场域关系，强调“人-居-环境”的协调。</view>
+    <view class="note">说明：以上内容属于传统文化研究与经验体系，不作为医学、法律、投资等专业结论。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">AI 大模型赋能优势</view>
+    <view class="item">1. 知识整合：将多源命理知识进行结构化整合，减少单一视角偏差。</view>
+    <view class="item">2. 表达清晰：复杂术语自动转化为更易理解的语言，降低理解门槛。</view>
+    <view class="item">3. 个性化建议：结合用户输入生成分层建议（短期提醒、长期方向、行动清单）。</view>
+    <view class="item">4. 持续迭代：模型与内容可持续更新，体验更稳定，反馈闭环更快。</view>
+    <view class="item">5. 可追踪复盘：同一主题可重复分析，便于对比阶段变化并形成长期观察。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">我们的目标</view>
+    <view class="para">让传统文化以更现代、理性的方式被理解和使用，帮助你在关键节点获得启发与参考。</view>
+  </view>
+</view>

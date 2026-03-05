@@ -1,0 +1,30 @@
+.container {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.history-text {
+  font-size: 28rpx;
+  line-height: 1.6;
+  margin-bottom: 8rpx;
+}
+
+.loading-wrap {
+  padding: 40rpx 0;
+  display: flex;
+  justify-content: center;
+}

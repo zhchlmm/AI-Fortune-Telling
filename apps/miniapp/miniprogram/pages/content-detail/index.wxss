@@ -1,0 +1,42 @@
+.container {
+  padding: 24rpx;
+}
+
+.loading-wrap {
+  padding: 60rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-card {
+  padding: 28rpx;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--td-text-color-primary, #1f2329);
+  line-height: 1.45;
+  margin-bottom: 18rpx;
+}
+
+.summary {
+  font-size: 30rpx;
+  color: var(--td-text-color-secondary, #3d424d);
+  line-height: 1.8;
+  margin-bottom: 16rpx;
+}
+
+.content-body {
+  font-size: 30rpx;
+  color: var(--td-text-color-primary, #1f2329);
+  line-height: 1.9;
+  word-break: break-all;
+}

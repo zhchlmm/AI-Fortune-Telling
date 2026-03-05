@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "content-card": "../content-card/index",
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "t-loading": "tdesign-miniprogram/loading/loading"
+  }
+}

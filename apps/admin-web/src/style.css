@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --accent: #f1f5f9;
+  --nav-hover: #f1f5f9;
+  --nav-active-bg: var(--primary);
+  --nav-active-fg: var(--primary-foreground);
+
+  --bg: var(--background);
+  --fg: var(--foreground);
+  --muted: var(--muted-foreground);
+  --input-bg: var(--input);
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --card: #0f172a;
+  --muted-foreground: #94a3b8;
+  --border: #1e293b;
+  --input: #0b1220;
+  --primary: #e2e8f0;
+  --primary-foreground: #0f172a;
+  --accent: #1e293b;
+  --nav-hover: #1e293b;
+
+  --bg: var(--background);
+  --fg: var(--foreground);
+  --muted: var(--muted-foreground);
+  --input-bg: var(--input);
+}
+
+:root[data-theme='default'] {
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --accent: #f1f5f9;
+}
+
+:root[data-theme='blue'] {
+  --primary: #2563eb;
+  --primary-foreground: #eff6ff;
+  --accent: #dbeafe;
+}
+
+:root[data-theme='violet'] {
+  --primary: #7c3aed;
+  --primary-foreground: #f5f3ff;
+  --accent: #ede9fe;
+}
+
+.dark[data-theme='default'] {
+  --primary: #e2e8f0;
+  --primary-foreground: #0f172a;
+  --accent: #1e293b;
+}
+
+.dark[data-theme='blue'] {
+  --primary: #60a5fa;
+  --primary-foreground: #082f49;
+  --accent: #1e3a8a;
+}
+
+.dark[data-theme='violet'] {
+  --primary: #a78bfa;
+  --primary-foreground: #2e1065;
+  --accent: #4c1d95;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    @apply m-0 min-h-screen antialiased;
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+
+  #app {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .ui-card {
+    @apply rounded-xl border shadow-sm;
+    background-color: var(--card);
+  }
+
+  .ui-input {
+    @apply h-10 w-full rounded-md border px-3 text-sm outline-none transition focus:ring-2;
+    background-color: var(--input-bg);
+    color: var(--fg);
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  .ui-input:focus {
+    border-color: color-mix(in srgb, var(--border) 45%, var(--fg));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--border) 55%, transparent);
+  }
+
+  .ui-select {
+    @apply h-10 rounded-md border px-3 text-sm outline-none transition focus:ring-2;
+    background-color: var(--input-bg);
+    color: var(--fg);
+  }
+
+  .ui-textarea {
+    @apply min-h-28 w-full rounded-md border px-3 py-2 text-sm outline-none transition focus:ring-2;
+    background-color: var(--input-bg);
+    color: var(--fg);
+  }
+
+  .ui-btn {
+    @apply inline-flex h-10 items-center justify-center rounded-md px-4 text-sm font-medium transition disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .ui-btn-primary {
+    @apply inline-flex h-10 items-center justify-center rounded-md px-4 text-sm font-medium transition disabled:pointer-events-none disabled:opacity-50;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .ui-btn-secondary {
+    @apply inline-flex h-10 items-center justify-center rounded-md border px-4 text-sm font-medium transition disabled:pointer-events-none disabled:opacity-50;
+    background-color: var(--card);
+    color: var(--fg);
+  }
+
+  .ui-btn-secondary:hover {
+    background-color: var(--accent);
+  }
+
+  .ui-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .ui-badge-success {
+    @apply inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700;
+  }
+
+  .ui-badge-danger {
+    @apply inline-flex items-center rounded-full bg-rose-100 px-2.5 py-0.5 text-xs font-medium text-rose-700;
+  }
+
+  .ui-badge-warning {
+    @apply inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700;
+  }
+
+  .app-sidebar {
+    @apply border-r p-4;
+    background-color: var(--card);
+  }
+
+  .nav-link {
+    @apply block rounded-md px-3 py-2 text-sm transition;
+    color: var(--fg);
+  }
+
+  .nav-link:hover {
+    background-color: var(--accent);
+  }
+
+  .nav-link-active {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .text-muted {
+    color: var(--muted);
+  }
+}

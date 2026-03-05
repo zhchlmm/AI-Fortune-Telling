@@ -1,0 +1,65 @@
+<view class="fortune-form">
+  <view class="section-label">你的问题：</view>
+  <view class="question-box">
+    <t-textarea
+      class="question-textarea"
+      value="{{userQuestion}}"
+      placeholder="{{questionPlaceholder}}"
+      maxlength="{{maxLength}}"
+      indicator
+      bindinput="onQuestionInput"
+      bindchange="onQuestionInput"
+    />
+  </view>
+
+  <!-- <view class="section-label">上传照片（可选）</view> -->
+  <view class="photo-row">
+    <view class="upload-btn" bindtap="choosePhotos">上传照片（可选）</view>
+    <view class="muted">最多{{maxPhotoCount}}张，单张≤10MB</view>
+  </view>
+
+  <view wx:if="{{photoPaths.length > 0}}" class="photo-grid">
+    <view
+      class="photo-item {{failedPhotoPaths.includes(item) ? 'photo-item-failed' : ''}}"
+      wx:for="{{photoPaths}}"
+      wx:key="*this"
+      data-url="{{item}}"
+      bindtap="previewPhoto"
+    >
+      <image class="photo-img" src="{{item}}" mode="aspectFill" />
+      <view class="photo-remove" data-index="{{index}}" bindtap="removePhoto">×</view>
+      <view wx:if="{{failedPhotoPaths.includes(item)}}" class="photo-failed-tip">上传失败</view>
+    </view>
+  </view>
+
+  <view wx:if="{{failedPhotoPaths.length > 0}}" class="retry-wrap">
+    <t-button size="small" variant="outline" theme="danger" bindtap="onRetryFailedTap">
+      重传失败项（{{failedPhotoPaths.length}}）
+    </t-button>
+  </view>
+
+  <view wx:if="{{uploadProgressVisible}}" class="upload-progress-wrap">
+    <view class="upload-progress-text">上传进度：{{uploadProgressCurrent}}/{{uploadProgressTotal}}</view>
+    <view class="upload-progress-track">
+      <view class="upload-progress-bar" style="width: {{uploadProgressPercent}}%;"></view>
+    </view>
+    <view wx:if="{{canCancelUpload}}" class="upload-cancel-wrap">
+      <t-button size="small" variant="outline" theme="danger" bindtap="onCancelUploadTap">取消上传</t-button>
+    </view>
+  </view>
+
+  <view class="action-row">
+    <picker class="type-picker" mode="selector" range="{{fortuneTypeDisplayOptions}}" value="{{fortuneTypeIndex}}" bindchange="onTypeChange">
+      <view class="picker-trigger">
+        <t-tag theme="primary" variant="light">{{fortuneTypeLabel}}</t-tag>
+        <view class="muted">切换类型</view>
+      </view>
+    </picker>
+
+    <view class="submit-inline">
+      <t-button theme="primary" loading="{{loading}}" disabled="{{loading}}" bindtap="onSubmitTap">
+        {{submitText}}
+      </t-button>
+    </view>
+  </view>
+</view>

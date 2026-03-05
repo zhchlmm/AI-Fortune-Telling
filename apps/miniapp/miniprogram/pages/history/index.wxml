@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="header-row">
+    <view class="section-title">历史记录</view>
+    <t-button size="small" variant="outline" bindtap="onShow">刷新</t-button>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <t-loading text="加载中" />
+  </view>
+
+  <view wx:elif="{{history.length === 0}}">
+    <t-empty description="暂无历史记录" />
+  </view>
+
+  <view wx:else class="list-wrap">
+    <view
+      wx:for="{{history}}"
+      wx:key="id"
+      class="card"
+      data-id="{{item.id}}"
+      data-result="{{item.resultSummary}}"
+      data-fortune-type="{{item.fortuneType}}"
+      bindtap="viewDetail"
+    >
+      <view class="card-title">{{item.displayFortuneType}}</view>
+      <view class="history-text">{{item.resultSummary}}</view>
+      <view class="muted">{{item.displayTime}}</view>
+    </view>
+
+    <view wx:if="{{loadingMore}}" class="loading-wrap">
+      <t-loading text="加载更多中" />
+    </view>
+
+    <view wx:elif="{{!hasMore && history.length > 0}}" class="loading-wrap muted">
+      没有更多历史记录了
+    </view>
+  </view>
+</view>

@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/info/index",
+    "pages/member/index",
+    "pages/profile/index",
+    "pages/about/index",
+    "pages/content-detail/index",
+    "pages/fortune-input/index",
+    "pages/fortune-result/index",
+    "pages/history/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "AI占卜",
+    "navigationBarBackgroundColor": "#7a5af8",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "custom": true,
+    "position": "bottom",
+    "color": "#808695",
+    "selectedColor": "#7a5af8",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/info/index",
+        "text": "资讯"
+      },
+      {
+        "pagePath": "pages/member/index",
+        "text": "会员"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-cell-group": "tdesign-miniprogram/cell-group/cell-group",
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-loading": "tdesign-miniprogram/loading/loading",
+    "t-radio": "tdesign-miniprogram/radio/radio",
+    "t-radio-group": "tdesign-miniprogram/radio-group/radio-group",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "t-textarea": "tdesign-miniprogram/textarea/textarea"
+  }
+}

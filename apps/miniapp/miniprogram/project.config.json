@@ -1,0 +1,25 @@
+{
+  "setting": {    
+    "useCompilerPlugins": ["typescript"],    "checkInvalidKey": true,
+    "es6": true, 
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "uglifyFileName": false,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "minifyWXML": true
+  },
+  "compileType": "miniprogram",
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wxc0be306cdb8f5a56",
+  "editorSetting": {}
+}

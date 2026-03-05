@@ -1,0 +1,31 @@
+.container {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.id-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.result-text {
+  margin-top: 16rpx;
+  font-size: 30rpx;
+  line-height: 1.8;
+}
+
+.action-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}

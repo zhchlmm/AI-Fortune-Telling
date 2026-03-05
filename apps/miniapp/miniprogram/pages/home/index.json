@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "AI科学算命",
+  "usingComponents": {
+    "fortune-form": "../../components/fortune-form/index",
+    "content-list": "../../components/content-list/index"
+  }
+}

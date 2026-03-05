@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="card">
+    <view class="card-title">填写占卜问题</view>
+    <view class="muted">选择占卜类型并描述你当前最想知道的问题。</view>
+
+    <fortune-form
+      id="fortuneForm"
+      submitText="提交占卜"
+      questionPlaceholder="例如：最近换工作是否合适？"
+      maxLength="200"
+      initialQuestion="{{prefillQuestion}}"
+      initialFortuneType="{{prefillFortuneType}}"
+      loading="{{submitting}}"
+      uploadProgressVisible="{{uploadProgressVisible}}"
+      uploadProgressCurrent="{{uploadProgressCurrent}}"
+      uploadProgressTotal="{{uploadProgressTotal}}"
+      uploadProgressPercent="{{uploadProgressPercent}}"
+      canCancelUpload="{{canCancelUpload}}"
+      bindsubmit="onFortuneSubmit"
+      bindretryfailed="onRetryFailed"
+      bindcancelupload="onCancelUpload"
+    />
+
+    <view class="result-card" wx:if="{{streamResult || streamError || streamFinished}}">
+      <view class="card-title">占卜结果</view>
+      <view class="muted" wx:if="{{submitting}}">AI 正在生成中，内容会实时更新...</view>
+      <view class="result-text" wx:if="{{streamResult}}">{{streamResult}}</view>
+      <view class="result-error" wx:if="{{streamError}}">{{streamError}}</view>
+      <view class="muted" wx:if="{{streamFinished && streamSessionId}}">会话ID：{{streamSessionId}}</view>
+    </view>
+  </view>
+</view>

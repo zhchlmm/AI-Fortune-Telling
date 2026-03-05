@@ -1,0 +1,43 @@
+.content-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.category-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.category-list {
+  display: inline-flex;
+  align-items: center;
+  gap: 14rpx;
+  padding-right: 10rpx;
+}
+
+.category-chip {
+  padding: 12rpx 24rpx;
+  border-radius: 999rpx;
+  background: #ffffff;
+  font-size: 24rpx;
+  color: #5f6572;
+  border: 1rpx solid #e9edf5;
+}
+
+.chip-active {
+  color: #0052d9;
+  background: #ebf3ff;
+  border-color: #bfd7ff;
+}
+
+.loading-wrap {
+  padding: 40rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.muted {
+  color: #808695;
+  font-size: 24rpx;
+}

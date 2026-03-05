@@ -1,0 +1,71 @@
+page {
+  --td-brand-color-1: #f4f1ff;
+  --td-brand-color-2: #ebe4ff;
+  --td-brand-color-3: #d8ccff;
+  --td-brand-color-4: #c0adff;
+  --td-brand-color-5: #a688ff;
+  --td-brand-color-6: #8d69ff;
+  --td-brand-color-7: #7a5af8;
+  --td-brand-color-8: #6848e8;
+  --td-brand-color-9: #5537c7;
+  --td-brand-color-10: #4328a3;
+  --td-primary-color-1: var(--td-brand-color-1);
+  --td-primary-color-2: var(--td-brand-color-2);
+  --td-primary-color-3: var(--td-brand-color-3);
+  --td-primary-color-4: var(--td-brand-color-4);
+  --td-primary-color-5: var(--td-brand-color-5);
+  --td-primary-color-6: var(--td-brand-color-6);
+  --td-primary-color-7: var(--td-brand-color-7);
+  --td-primary-color-8: var(--td-brand-color-8);
+  --td-primary-color-9: var(--td-brand-color-9);
+  --td-primary-color-10: var(--td-brand-color-10);
+  --td-brand-color: var(--td-primary-color-7);
+  --td-brand-color-focus: var(--td-primary-color-1);
+  --td-brand-color-active: var(--td-primary-color-8);
+  --td-brand-color-disabled: var(--td-primary-color-3);
+  --td-brand-color-light: var(--td-primary-color-1);
+  --td-brand-color-light-active: var(--td-primary-color-2);
+  background: var(--td-bg-color-page, #f7f8fa);
+  color: var(--td-text-color-primary, #1f2329);
+}
+
+.container {
+  padding: 24rpx;
+}
+
+.tab-page {
+  padding-bottom: calc(132rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.tabbar-placeholder {
+  height: calc(132rpx + env(safe-area-inset-bottom));
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.section-title {
+  margin: 8rpx 0 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--td-text-color-secondary, #808695);
+  font-size: 24rpx;
+}
+
+.card {
+  background: var(--td-bg-color-container, #ffffff);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+  margin-bottom: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--td-text-color-primary, #1f2329);
+}

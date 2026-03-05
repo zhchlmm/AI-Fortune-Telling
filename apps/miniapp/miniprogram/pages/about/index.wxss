@@ -1,0 +1,52 @@
+.page {
+  min-height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background: #f6f7fb;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.04);
+}
+
+.hero {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12rpx;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.para {
+  color: #374151;
+  font-size: 27rpx;
+  line-height: 1.75;
+  margin-bottom: 10rpx;
+}
+
+.item {
+  color: #1f2937;
+  font-size: 27rpx;
+  line-height: 1.8;
+  margin-bottom: 8rpx;
+}
+
+.note {
+  margin-top: 6rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.7;
+}

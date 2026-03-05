@@ -1,0 +1,8 @@
+<view class="card news-card" bindtap="onOpen">
+  <view class="news-head">
+    <view class="news-title title-ellipsis">{{item.title}}</view>
+    <t-tag size="small" variant="light">{{item.categoryName}}</t-tag>
+  </view>
+  <view class="news-summary summary-ellipsis">{{item.summary}}</view>
+  <view class="news-meta muted">发布时间：{{item.displayTime}}</view>
+</view>

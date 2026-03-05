@@ -1,0 +1,89 @@
+.container {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.hero {
+  padding: 28rpx;
+}
+
+.member-card {
+  padding: 28rpx;
+}
+
+.current-member-card {
+  padding: 24rpx 28rpx;
+  border: 1rpx solid var(--td-brand-color-3, #d8ccff);
+}
+
+.current-member-label {
+  font-size: 24rpx;
+  color: var(--td-text-color-secondary, #6b7280);
+}
+
+.current-member-name {
+  margin: 8rpx 0;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--td-brand-color, #0052d9);
+}
+
+.member-head {
+  margin-bottom: 14rpx;
+}
+
+.member-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--td-text-color-primary, #1f2329);
+}
+
+.member-prices {
+  margin-top: 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  align-items: center;
+}
+
+.origin-price {
+  font-size: 24rpx;
+  color: var(--td-text-color-placeholder, #9ca3af);
+  text-decoration: line-through;
+}
+
+.sale-price {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--td-error-color, #e34d59);
+}
+
+.year-price {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: var(--td-brand-color, #0052d9);
+  font-weight: 500;
+}
+
+.feature-list {
+  margin: 0 0 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.feature-item {
+  font-size: 26rpx;
+  color: var(--td-text-color-secondary, #374151);
+}
+
+.action-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.action-row t-button {
+  flex: 1;
+}

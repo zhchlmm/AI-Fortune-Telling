@@ -1,0 +1,143 @@
+.fortune-form {
+  margin-top: 8rpx;
+}
+
+.section-label {
+  margin: 20rpx 0 12rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: var(--td-text-color-primary, #1f2329);
+}
+
+.question-textarea {
+  height: 240rpx;
+}
+
+.question-box {
+  border: 2rpx solid var(--td-component-border, #d9dde5);
+  border-radius: 16rpx;
+  padding: 8rpx;
+  background: var(--td-bg-color-container, #ffffff);
+}
+
+.picker-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  background: var(--td-bg-color-component, #f3f3f3);
+}
+
+.photo-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.upload-btn {
+  padding: 12rpx 20rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid var(--td-brand-color-3, #d8ccff);
+  color: var(--td-brand-color, #7a5af8);
+  background: var(--td-brand-color-light, #f4f1ff);
+  font-size: 24rpx;
+}
+
+.photo-grid {
+  margin-top: 16rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12rpx;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.photo-item {
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.photo-item-failed .photo-img {
+  border: 2rpx solid var(--td-error-color, #e34d59);
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.photo-remove {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 999rpx;
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--td-text-color-anti, #ffffff);
+  font-size: 20rpx;
+  line-height: 30rpx;
+  text-align: center;
+}
+
+.photo-failed-tip {
+  position: absolute;
+  left: 8rpx;
+  bottom: 8rpx;
+  padding: 4rpx 8rpx;
+  border-radius: 8rpx;
+  background: rgba(227, 77, 89, 0.9);
+  color: var(--td-text-color-anti, #fff);
+  font-size: 20rpx;
+  line-height: 1.2;
+}
+
+.retry-wrap {
+  margin-top: 12rpx;
+}
+
+.upload-progress-wrap {
+  margin-top: 12rpx;
+}
+
+.upload-progress-text {
+  margin-bottom: 8rpx;
+  font-size: 22rpx;
+  color: var(--td-text-color-secondary, #4b5563);
+}
+
+.upload-progress-track {
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: var(--td-bg-color-component, #e5e7eb);
+  overflow: hidden;
+}
+
+.upload-progress-bar {
+  height: 100%;
+  background: var(--td-brand-color, #7a5af8);
+  transition: width 0.2s ease;
+}
+
+.upload-cancel-wrap {
+  margin-top: 10rpx;
+}
+
+.action-row {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.type-picker {
+  flex: 1;
+}
+
+.submit-inline {
+  flex-shrink: 0;
+}

@@ -1,0 +1,21 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <t-loading text="加载中" />
+  </view>
+
+  <view wx:elif="{{!content}}">
+    <t-empty description="资讯不存在或已下线" />
+  </view>
+
+  <view wx:else class="card detail-card">
+    <view class="header-row">
+      <t-tag size="small" variant="light">{{content.categoryName}}</t-tag>
+      <view class="muted">{{content.displayTime}}</view>
+    </view>
+    <view class="title">{{content.title}}</view>
+    <view class="summary">{{content.summary}}</view>
+    <view class="content-body">
+      <rich-text nodes="{{content.content}}" />
+    </view>
+  </view>
+</view>

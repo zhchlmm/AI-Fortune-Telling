@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="card">
+    <view class="card-title">占卜结果</view>
+    <view wx:if="{{result}}">
+      <view wx:if="{{displayFortuneType}}" class="meta-row">
+        <t-tag size="small" theme="primary" variant="light">{{displayFortuneType}}</t-tag>
+      </view>
+      <view class="meta-row">
+        <t-tag size="small" variant="light">会话ID</t-tag>
+        <view class="muted id-text">{{id}}</view>
+      </view>
+      <view class="result-text">{{result}}</view>
+    </view>
+    <view wx:else>
+      <t-empty description="未获取到结果" />
+    </view>
+  </view>
+
+  <view class="action-group">
+    <t-button theme="primary" block bindtap="goAgain">再来一次</t-button>
+    <t-button variant="outline" block bindtap="goHistory">查看历史</t-button>
+    <t-button variant="text" block bindtap="goHome">返回首页</t-button>
+  </view>
+</view>

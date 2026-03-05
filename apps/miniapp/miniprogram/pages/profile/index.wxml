@@ -1,0 +1,27 @@
+<view class="container tab-page">
+  <view class="hero card">
+    <view class="card-title">个人中心</view>
+    <view class="muted">当前用户：{{userId}}</view>
+    <view class="member-level" bindtap="goMemberCenter">
+      <view class="member-left">
+        <t-icon name="{{memberIcon}}" size="36rpx" color="{{memberIconColor}}" />
+        <text class="member-name" style="color: {{memberNameColor}};">{{memberLevel}}</text>
+      </view>
+      <view class="member-right">
+        <text class="member-hint">{{memberHint}}</text>
+        <t-icon name="chevron-right" size="30rpx" />
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">功能入口</view>
+    <t-grid column="4" border="{{false}}" hover="{{true}}">
+      <t-grid-item text="去占卜" icon="gesture-pray-1" bind:click="goFortune" />
+      <t-grid-item text="历史记录" icon="history" bind:click="goHistory" />
+      <t-grid-item text="关于我们" icon="book-open" bind:click="goAbout" />
+      <t-grid-item text="返回首页" icon="home" bind:click="goHome" />
+    </t-grid>
+  </view>
+  <view class="tabbar-placeholder" />
+</view>

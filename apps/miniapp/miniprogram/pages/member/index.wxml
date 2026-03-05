@@ -1,0 +1,33 @@
+<view class="container tab-page">
+
+  <view class="card current-member-card">
+    <view class="current-member-label">当前会员类型</view>
+    <view class="current-member-name">{{currentMemberType}}</view>
+    <view class="feature-list">
+      <view class="feature-item">· 免费AI算命</view>
+      <view class="feature-item">· 全站命理知识免费观看</view>
+      <view class="feature-item">· 生辰八字、属相、星座等</view>
+      <view class="feature-item">· 分享免费得VIP会员</view>
+    </view>
+    <view class="muted">开通会员享受更多专属权益</view>
+  </view>
+
+  <view wx:for="{{plans}}" wx:key="name" class="card member-card">
+    <view class="member-head">
+      <view class="member-name">{{item.name}}</view>
+      <view class="member-prices">
+        <text class="origin-price">原价{{item.originPrice}}</text>
+        <text class="sale-price">优惠价{{item.salePrice}}</text>
+      </view>
+      <view class="year-price">包年优惠价{{item.yearPrice}}</view>
+    </view>
+    <view class="feature-list">
+      <view wx:for="{{item.benefits}}" wx:key="*this" class="feature-item">· {{item}}</view>
+    </view>
+    <view class="action-row">
+      <t-button theme="primary" data-plan="{{item.name}}" data-period="包月" bindtap="onSubscribe">开通包月</t-button>
+      <t-button variant="outline" data-plan="{{item.name}}" data-period="包年" bindtap="onSubscribe">开通包年</t-button>
+    </view>
+  </view>
+  <view class="tabbar-placeholder" />
+</view>

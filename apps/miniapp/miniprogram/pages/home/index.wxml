@@ -1,0 +1,22 @@
+<view class="container tab-page">
+  <view class="hero card">
+    <view class="card-title">AI 科学算命</view>
+    <view class="muted">古人的智慧，今人的算法 ——AI 为你白话传统命学！</view>
+
+    <fortune-form
+      id="fortuneForm"
+      submitText="AI 算命"
+      questionPlaceholder="输入你的问题，例如：最近换工作是否合适？选择占卜类型，快速获得专属解读。"
+      maxLength="80"
+      bindsubmit="onFortuneSubmit"
+    />
+
+  </view>
+
+  <view class="section-head">
+    <view class="section-title">内容资讯</view>
+  </view>
+
+  <content-list id="contentList" bind:open="goContentDetail" />
+  <view class="tabbar-placeholder" />
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "资讯中心",
+  "usingComponents": {
+    "content-list": "../../components/content-list/index"
+  }
+}

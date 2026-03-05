@@ -1,0 +1,19 @@
+.card {
+  background: var(--td-bg-color-container, #ffffff);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+  margin-bottom: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--td-text-color-primary, #1f2329);
+}
+
+.card-body {
+  font-size: 28rpx;
+  color: var(--td-text-color-primary, #1f2329);
+}
