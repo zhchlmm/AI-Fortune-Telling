@@ -1,6 +1,6 @@
 import { env } from '../env/dev'
 
-type RequestMethod = 'GET' | 'POST'
+type RequestMethod = 'GET' | 'POST' | 'PUT'
 
 type RequestData = WechatMiniprogram.IAnyObject | string | ArrayBuffer
 
@@ -81,6 +81,23 @@ export type UploadImagesOptions = {
   compressQuality?: number
   onProgress?: (progress: { current: number; total: number }) => void
   controller?: UploadCancelController
+}
+
+export type MiniappUserProfileDto = {
+  openId: string
+  nickname?: string | null
+  avatar?: string | null
+  email?: string | null
+  phoneNumber?: string | null
+  updatedAt: string
+}
+
+export type UpdateMiniappUserProfilePayload = {
+  openId: string
+  nickname?: string
+  avatar?: string
+  email?: string
+  phoneNumber?: string
 }
 
 export type UploadCancelController = {
@@ -275,6 +292,22 @@ export function getFortuneHistory(userId: string, page = 1, pageSize = 10) {
     `/fortune-sessions?userId=${encodeURIComponent(userId)}&page=${page}&pageSize=${pageSize}`,
     'GET',
   )
+}
+
+export function getMiniappUserProfile(openId: string) {
+  return request<MiniappUserProfileDto>(`/miniapp/users/profile?openId=${encodeURIComponent(openId)}`, 'GET')
+}
+
+export function updateMiniappUserProfile(payload: UpdateMiniappUserProfilePayload) {
+  return request<MiniappUserProfileDto>('/miniapp/users/profile', 'PUT', payload)
+}
+
+export function updateMiniappUserPhoneByEncryptedData(payload: {
+  openId: string
+  encryptedData: string
+  iv: string
+}) {
+  return request<MiniappUserProfileDto>('/miniapp/users/phone', 'POST', payload)
 }
 
 export function getContents(options?: string | ContentQueryOptions) {

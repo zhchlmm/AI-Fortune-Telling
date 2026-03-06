@@ -1,4 +1,5 @@
 import { getFortuneHistory, type FortuneSessionDto } from '../../services/api'
+import { ensureMiniappLogin } from '../../services/auth'
 import { formatBeijingTime } from '../../utils/datetime'
 
 type FortuneHistoryView = FortuneSessionDto & {
@@ -51,7 +52,9 @@ Page({
     })
 
     try {
+      const userId = await ensureMiniappLogin()
       const app = getApp<{ globalData: { userId: string } }>()
+      app.globalData.userId = userId
       const history = await getFortuneHistory(app.globalData.userId, nextPage, this.data.pageSize)
       const mapped = history.map((item) => ({
         ...item,

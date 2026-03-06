@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const api_1 = require("../../services/api");
+const auth_1 = require("../../services/auth");
 const datetime_1 = require("../../utils/datetime");
 const FORTUNE_TYPE_LABEL_MAP = {
     Tarot: '塔罗',
@@ -41,7 +42,9 @@ Page({
             loadingMore: !reset,
         });
         try {
+            const userId = await (0, auth_1.ensureMiniappLogin)();
             const app = getApp();
+            app.globalData.userId = userId;
             const history = await (0, api_1.getFortuneHistory)(app.globalData.userId, nextPage, this.data.pageSize);
             const mapped = history.map((item) => ({
                 ...item,

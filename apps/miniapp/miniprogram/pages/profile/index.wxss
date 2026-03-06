@@ -9,6 +9,68 @@
   padding: 28rpx;
 }
 
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.avatar {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 999rpx;
+  background: #e5e7eb;
+}
+
+.profile-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8rpx;
+}
+
+.profile-info {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rpx 0;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.info-value {
+  font-size: 26rpx;
+  color: #111827;
+}
+
+.edit-panel {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
 .member-level {
   margin-top: 16rpx;
   padding: 14rpx 16rpx;

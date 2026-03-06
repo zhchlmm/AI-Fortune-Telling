@@ -20,6 +20,8 @@ public class AdminDbContext(DbContextOptions<AdminDbContext> options) : DbContex
 
     public DbSet<AiAuditEntity> AiAudits => Set<AiAuditEntity>();
 
+    public DbSet<MiniappUserEntity> MiniappUsers => Set<MiniappUserEntity>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<FortuneSessionEntity>().ToTable("FortuneSessions");
@@ -30,6 +32,7 @@ public class AdminDbContext(DbContextOptions<AdminDbContext> options) : DbContex
         modelBuilder.Entity<AdminUserEntity>().ToTable("AdminUsers");
         modelBuilder.Entity<LoginAuditEntity>().ToTable("LoginAudits");
         modelBuilder.Entity<AiAuditEntity>().ToTable("AiAudits");
+        modelBuilder.Entity<MiniappUserEntity>().ToTable("MiniappUsers");
 
         modelBuilder.Entity<ContentCategoryEntity>()
             .HasIndex(x => x.Name)
@@ -44,5 +47,33 @@ public class AdminDbContext(DbContextOptions<AdminDbContext> options) : DbContex
         modelBuilder.Entity<OrderEntity>()
             .Property(x => x.Amount)
             .HasPrecision(18, 2);
+
+        modelBuilder.Entity<MiniappUserEntity>()
+            .HasIndex(x => x.OpenId)
+            .IsUnique();
+
+        modelBuilder.Entity<MiniappUserEntity>()
+            .Property(x => x.OpenId)
+            .HasMaxLength(128);
+
+        modelBuilder.Entity<MiniappUserEntity>()
+            .Property(x => x.SessionKey)
+            .HasMaxLength(256);
+
+        modelBuilder.Entity<MiniappUserEntity>()
+            .Property(x => x.Nickname)
+            .HasMaxLength(64);
+
+        modelBuilder.Entity<MiniappUserEntity>()
+            .Property(x => x.Avatar)
+            .HasMaxLength(512);
+
+        modelBuilder.Entity<MiniappUserEntity>()
+            .Property(x => x.Email)
+            .HasMaxLength(128);
+
+        modelBuilder.Entity<MiniappUserEntity>()
+            .Property(x => x.PhoneNumber)
+            .HasMaxLength(32);
     }
 }

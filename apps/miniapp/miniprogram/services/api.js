@@ -7,6 +7,9 @@ exports.isUploadCanceledError = isUploadCanceledError;
 exports.createFortuneSession = createFortuneSession;
 exports.createFortuneSessionByWebSocket = createFortuneSessionByWebSocket;
 exports.getFortuneHistory = getFortuneHistory;
+exports.getMiniappUserProfile = getMiniappUserProfile;
+exports.updateMiniappUserProfile = updateMiniappUserProfile;
+exports.updateMiniappUserPhoneByEncryptedData = updateMiniappUserPhoneByEncryptedData;
 exports.getContents = getContents;
 exports.getContentById = getContentById;
 exports.getContentCategories = getContentCategories;
@@ -186,6 +189,15 @@ function createFortuneSessionByWebSocket(options) {
 }
 function getFortuneHistory(userId, page = 1, pageSize = 10) {
     return request(`/fortune-sessions?userId=${encodeURIComponent(userId)}&page=${page}&pageSize=${pageSize}`, 'GET');
+}
+function getMiniappUserProfile(openId) {
+    return request(`/miniapp/users/profile?openId=${encodeURIComponent(openId)}`, 'GET');
+}
+function updateMiniappUserProfile(payload) {
+    return request('/miniapp/users/profile', 'PUT', payload);
+}
+function updateMiniappUserPhoneByEncryptedData(payload) {
+    return request('/miniapp/users/phone', 'POST', payload);
 }
 function getContents(options) {
     const query = [];

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const api_1 = require("../../services/api");
 const dev_1 = require("../../env/dev");
+const auth_1 = require("../../services/auth");
 function safeDecode(value) {
     if (!value) {
         return '';
@@ -88,7 +89,9 @@ Page({
             streamError: '',
         });
         try {
+            const userId = await (0, auth_1.ensureMiniappLogin)();
             const app = getApp();
+            app.globalData.userId = userId;
             if (pendingPhotoPaths.length > 0) {
                 uploadController = (0, api_1.createUploadCancelController)();
                 this.uploadController = uploadController;

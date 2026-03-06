@@ -137,3 +137,24 @@ public class AiAuditEntity
 
     public DateTime CreatedAt { get; set; }
 }
+
+public class MiniappUserEntity
+{
+    public Guid Id { get; set; }
+
+    public string OpenId { get; set; } = string.Empty;
+
+    public string SessionKey { get; set; } = string.Empty;
+
+    public string? Nickname { get; set; }
+
+    public string? Avatar { get; set; }
+
+    public string? Email { get; set; }
+
+    public string? PhoneNumber { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime UpdatedAt { get; set; }
+}

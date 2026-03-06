@@ -8,6 +8,7 @@ import {
   type UploadCancelController,
 } from '../../services/api'
 import { env } from '../../env/dev'
+import { ensureMiniappLogin } from '../../services/auth'
 
 type FortuneSubmitDetail = {
   fortuneType: string
@@ -116,7 +117,9 @@ Page({
       streamError: '',
     })
     try {
+      const userId = await ensureMiniappLogin()
       const app = getApp<{ globalData: { userId: string } }>()
+      app.globalData.userId = userId
       if (pendingPhotoPaths.length > 0) {
         uploadController = createUploadCancelController()
         ;(this as unknown as { uploadController?: UploadCancelController }).uploadController = uploadController

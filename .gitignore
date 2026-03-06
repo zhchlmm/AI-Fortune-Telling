@@ -1,2 +1,15 @@
 /node_modules
 /package-lock.json
+
+# .NET build artifacts
+**/bin/
+**/obj/
+
+# General logs and temp files
+*.log
+*.tmp
+*.temp
+
+# OS/editor files
+.DS_Store
+Thumbs.db

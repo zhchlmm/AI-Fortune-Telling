@@ -169,3 +169,34 @@ public record UpdateFortuneTemplateRequest(
     string Prompt,
     bool IsEnabled
 );
+
+public record MiniappLoginByCodeRequest(
+    string Code
+);
+
+public record MiniappLoginByCodeResponse(
+    string OpenId
+);
+
+public record MiniappUserProfileResponse(
+    string OpenId,
+    string? Nickname,
+    string? Avatar,
+    string? Email,
+    string? PhoneNumber,
+    DateTime UpdatedAt
+);
+
+public record UpdateMiniappUserProfileRequest(
+    string OpenId,
+    string? Nickname,
+    string? Email,
+    string? PhoneNumber,
+    string? Avatar
+);
+
+public record UpdateMiniappUserPhoneRequest(
+    string OpenId,
+    string EncryptedData,
+    string Iv
+);

@@ -21,6 +21,7 @@ builder.Services.AddDbContext<AdminDbContext>(options =>
 });
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
 builder.Services.Configure<OpenAiCompatibleOptions>(builder.Configuration.GetSection("OpenAiCompatible"));
+builder.Services.Configure<WechatMiniappOptions>(builder.Configuration.GetSection("WechatMiniapp"));
 builder.Services.AddSingleton<JwtTokenService>();
 builder.Services.AddSingleton<PasswordHasher>();
 builder.Services.AddScoped<AiAuditStore>();
