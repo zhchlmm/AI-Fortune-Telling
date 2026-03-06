@@ -8,7 +8,7 @@
 
 ## 本地开发建议顺序
 
-1. 启动 API 服务（当前开发端口示例 `http://localhost:5228`）
+1. 启动 API 服务（当前开发端口示例 `http://localhost:5230`）
 2. 启动管理后台前端（默认 `http://localhost:5173`）
 3. 使用微信开发者工具打开 `apps/miniapp` 进行联调
 
@@ -28,25 +28,25 @@
 
 ### 1) 登录获取 JWT
 
-`Invoke-RestMethod -Method Post -Uri "http://localhost:5228/api/v1/auth/login" -ContentType "application/json" -Body (@{ username='admin'; password='admin123' } | ConvertTo-Json) | ConvertTo-Json -Depth 5`
+`Invoke-RestMethod -Method Post -Uri "http://localhost:5230/api/v1/auth/login" -ContentType "application/json" -Body (@{ username='admin'; password='admin123' } | ConvertTo-Json) | ConvertTo-Json -Depth 5`
 
 ### 2) 鉴权访问模板列表
 
-`$login = Invoke-RestMethod -Method Post -Uri "http://localhost:5228/api/v1/auth/login" -ContentType "application/json" -Body (@{ username='admin'; password='admin123' } | ConvertTo-Json); $headers = @{ Authorization = "Bearer $($login.token)" }; Invoke-RestMethod -Method Get -Uri "http://localhost:5228/api/v1/templates" -Headers $headers | ConvertTo-Json -Depth 6`
+`$login = Invoke-RestMethod -Method Post -Uri "http://localhost:5230/api/v1/auth/login" -ContentType "application/json" -Body (@{ username='admin'; password='admin123' } | ConvertTo-Json); $headers = @{ Authorization = "Bearer $($login.token)" }; Invoke-RestMethod -Method Get -Uri "http://localhost:5230/api/v1/templates" -Headers $headers | ConvertTo-Json -Depth 6`
 
 ### 3) 创建会话并分页查询管理端会话
 
-`Invoke-RestMethod -Method Post -Uri "http://localhost:5228/api/v1/fortune-sessions" -ContentType "application/json" -Body (@{ userId='demo-user'; fortuneType='Tarot'; parameters=@{ question='healthcheck' } } | ConvertTo-Json -Depth 5) | Out-Null; $login = Invoke-RestMethod -Method Post -Uri "http://localhost:5228/api/v1/auth/login" -ContentType "application/json" -Body (@{ username='admin'; password='admin123' } | ConvertTo-Json); $headers = @{ Authorization = "Bearer $($login.token)" }; Invoke-RestMethod -Method Get -Uri "http://localhost:5228/api/v1/admin/fortune-sessions?page=1&pageSize=10" -Headers $headers | ConvertTo-Json -Depth 6`
+`Invoke-RestMethod -Method Post -Uri "http://localhost:5230/api/v1/fortune-sessions" -ContentType "application/json" -Body (@{ userId='demo-user'; fortuneType='Tarot'; parameters=@{ question='healthcheck' } } | ConvertTo-Json -Depth 5) | Out-Null; $login = Invoke-RestMethod -Method Post -Uri "http://localhost:5230/api/v1/auth/login" -ContentType "application/json" -Body (@{ username='admin'; password='admin123' } | ConvertTo-Json); $headers = @{ Authorization = "Bearer $($login.token)" }; Invoke-RestMethod -Method Get -Uri "http://localhost:5230/api/v1/admin/fortune-sessions?page=1&pageSize=10" -Headers $headers | ConvertTo-Json -Depth 6`
 
 ### 4) AI 成功路径审计验证（degraded=false）
 
 先设置环境变量并启动 API（同一个终端会话内）：
 
-`$env:OpenAiCompatible__Enabled='true'; $env:OpenAiCompatible__ApiKey='你的Key'; $env:OpenAiCompatible__BaseUrl='https://api.openai.com/v1'; $env:OpenAiCompatible__Model='gpt-4o-mini'; Set-Location "services/admin-api/AdminApi.Host"; dotnet run --urls http://localhost:5228`
+`$env:OpenAiCompatible__Enabled='true'; $env:OpenAiCompatible__ApiKey='你的Key'; $env:OpenAiCompatible__BaseUrl='https://api.openai.com/v1'; $env:OpenAiCompatible__Model='gpt-4o-mini'; Set-Location "services/admin-api/AdminApi.Host"; dotnet run --urls http://localhost:5230`
 
 再开另一个终端执行验证脚本：
 
-`Set-Location "scripts"; .\verify-ai-audit.ps1 -BaseUrl "http://localhost:5228"`
+`Set-Location "scripts"; .\verify-ai-audit.ps1 -BaseUrl "http://localhost:5230"`
 
 ## GitHub Copilot C# SDK 流式版本（WebSocket）
 
@@ -66,19 +66,19 @@
 
 ### 2) 启动 API（包含 WebSocket 端点）
 
-`Set-Location "services/admin-api/AdminApi.Host"; dotnet run --urls http://localhost:5228`
+`Set-Location "services/admin-api/AdminApi.Host"; dotnet run --urls http://localhost:5230`
 
-WebSocket 端点：`ws://localhost:5228/ws/fortune-stream`
+WebSocket 端点：`ws://localhost:5230/ws/fortune-stream`
 
 ### 3) 小程序切换到 WebSocket 算命版本
 
 在 `apps/miniapp/miniprogram/env/dev.ts`（和 `apps/miniapp/env/dev.ts`）中设置：
 
 - `fortuneTransport: 'copilot-ws'`
-- `copilotWsUrl: 'ws://localhost:5228/ws/fortune-stream'`
+- `copilotWsUrl: 'ws://localhost:5230/ws/fortune-stream'`
 
 设置为 `fortuneTransport: 'rest'` 即恢复原版本。
 
 ### 4) 运行 WebSocket 流式联调脚本
 
-`Set-Location "scripts"; .\verify-copilot-ws.ps1 -WsUrl "ws://localhost:5228/ws/fortune-stream"`
+`Set-Location "scripts"; .\verify-copilot-ws.ps1 -WsUrl "ws://localhost:5230/ws/fortune-stream"`
