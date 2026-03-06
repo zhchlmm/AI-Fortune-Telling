@@ -1,5 +1,5 @@
 <view class="fortune-form">
-  <view class="section-label">你的问题：</view>
+  <!-- <view class="section-label">你的问题：</view> -->
   <view class="question-box">
     <t-textarea
       class="question-textarea"
