@@ -5,7 +5,7 @@ const ADMIN_USERNAME_KEY = 'admin_username'
 const REQUIRE_PASSWORD_CHANGE_KEY = 'require_password_change'
 
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5228/api/v1',
+  baseURL: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5230/api/v1',
   timeout: 10000,
 })
 

@@ -1,5 +1,5 @@
 param(
-    [string]$BaseUrl = "http://localhost:5228",
+    [string]$BaseUrl = "http://localhost:5230",
     [string]$Username = "admin",
     [string]$Password = "admin123",
     [string]$UserId = "ai-audit-user",

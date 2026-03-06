@@ -39,7 +39,7 @@ function Resolve-BaseUrl {
         }
     }
 
-    return "http://localhost:5228"
+    return "http://localhost:5230"
 }
 
 function Invoke-Login {
