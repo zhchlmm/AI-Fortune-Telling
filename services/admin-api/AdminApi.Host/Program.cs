@@ -20,9 +20,11 @@ builder.Services.AddDbContext<AdminDbContext>(options =>
     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36)));
 });
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
+builder.Services.Configure<MiniappJwtOptions>(builder.Configuration.GetSection("MiniappJwt"));
 builder.Services.Configure<OpenAiCompatibleOptions>(builder.Configuration.GetSection("OpenAiCompatible"));
 builder.Services.Configure<WechatMiniappOptions>(builder.Configuration.GetSection("WechatMiniapp"));
 builder.Services.AddSingleton<JwtTokenService>();
+builder.Services.AddSingleton<MiniappTokenService>();
 builder.Services.AddSingleton<PasswordHasher>();
 builder.Services.AddScoped<AiAuditStore>();
 builder.Services.AddScoped<CopilotFortuneWebSocketService>();
@@ -31,6 +33,8 @@ builder.Services.AddScoped<FortuneAiService>();
 
 var jwtOptions = builder.Configuration.GetSection("Jwt").Get<JwtOptions>() ?? new JwtOptions();
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret));
+var miniappJwtOptions = builder.Configuration.GetSection("MiniappJwt").Get<MiniappJwtOptions>() ?? new MiniappJwtOptions();
+var miniappKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(miniappJwtOptions.Secret));
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -42,9 +46,9 @@ builder.Services
             ValidateAudience = true,
             ValidateIssuerSigningKey = true,
             ValidateLifetime = true,
-            ValidIssuer = jwtOptions.Issuer,
-            ValidAudience = jwtOptions.Audience,
-            IssuerSigningKey = key,
+            ValidIssuers = [jwtOptions.Issuer, miniappJwtOptions.Issuer],
+            ValidAudiences = [jwtOptions.Audience, miniappJwtOptions.Audience],
+            IssuerSigningKeys = [key, miniappKey],
             ClockSkew = TimeSpan.Zero
         };
     });

@@ -5,7 +5,7 @@ import {
   updateMiniappUserProfile,
   type MiniappUserProfileDto,
 } from '../../services/api'
-import { ensureMiniappLogin } from '../../services/auth'
+import { clearMiniappAuth, ensureMiniappLogin } from '../../services/auth'
 
 function resolveMemberMeta(level: string) {
   if (level.includes('钻石')) {
@@ -57,16 +57,18 @@ Page({
     await this.loadProfile(userId)
     syncCustomTabBarSelected(this, 3)
   },
-  async loadProfile(openId: string) {
+  async loadProfile(_openId: string) {
     try {
-      const profile = await getMiniappUserProfile(openId)
+      const profile = await getMiniappUserProfile()
       this.setProfileData(profile)
-    } catch {
+    } catch (error) {
+      const message = this.resolveErrorMessage(error, '加载个人资料失败')
       this.setData({
         nickname: '未设置',
         email: '未设置',
         phoneNumber: '未设置',
       })
+      wx.showToast({ title: message, icon: 'none' })
     }
   },
   setProfileData(profile: MiniappUserProfileDto) {
@@ -135,7 +137,6 @@ Page({
     this.setData({ savingProfile: true })
     try {
       const updated = await updateMiniappUserProfile({
-        openId: this.data.userId,
         nickname: this.data.draftNickname,
         email: this.data.draftEmail,
         phoneNumber: this.data.draftPhoneNumber,
@@ -145,8 +146,8 @@ Page({
       this.setProfileData(updated)
       this.setData({ editMode: false })
       wx.showToast({ title: '保存成功', icon: 'success' })
-    } catch {
-      wx.showToast({ title: '保存失败', icon: 'none' })
+    } catch (error) {
+      wx.showToast({ title: this.resolveErrorMessage(error, '保存失败'), icon: 'none' })
     } finally {
       this.setData({ savingProfile: false })
     }
@@ -170,16 +171,45 @@ Page({
 
     try {
       const updated = await updateMiniappUserPhoneByEncryptedData({
-        openId: this.data.userId,
         encryptedData: e.detail.encryptedData,
         iv: e.detail.iv,
       })
 
       this.setProfileData(updated)
       wx.showToast({ title: '手机号已更新', icon: 'success' })
-    } catch {
-      wx.showToast({ title: '手机号更新失败', icon: 'none' })
+    } catch (error) {
+      wx.showToast({ title: this.resolveErrorMessage(error, '手机号更新失败'), icon: 'none' })
     }
+  },
+  resolveErrorMessage(error: unknown, fallback: string) {
+    const err = error as { message?: string; code?: string; statusCode?: number }
+    const code = err?.code ?? ''
+    if (code === 'PHONE_DECRYPT_FAILED') {
+      return '微信手机号解析失败，请重试或手动输入'
+    }
+
+    if (code === 'SESSION_KEY_MISSING') {
+      clearMiniappAuth()
+      return '登录态已失效，请重试'
+    }
+
+    if (code === 'USER_BLOCKED') {
+      return '账号已受限，暂不可修改资料'
+    }
+
+    if (code === 'INVALID_PHONE_NUMBER') {
+      return '手机号格式不正确'
+    }
+
+    if (code === 'INVALID_EMAIL') {
+      return '邮箱格式不正确'
+    }
+
+    if (typeof err?.message === 'string' && err.message.trim().length > 0) {
+      return err.message
+    }
+
+    return fallback
   },
   getWechatUserInfo() {
     return new Promise<WechatMiniprogram.GetUserInfoSuccessCallbackResult>((resolve, reject) => {

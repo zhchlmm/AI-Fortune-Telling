@@ -78,6 +78,13 @@ watch(() => route.path, () => {
             会话查询
           </RouterLink>
           <RouterLink
+            to="/miniapp-users"
+            class="nav-link"
+            active-class="nav-link-active"
+          >
+            小程序用户
+          </RouterLink>
+          <RouterLink
             to="/auth-audits"
             class="nav-link"
             active-class="nav-link-active"
@@ -150,6 +157,14 @@ watch(() => route.path, () => {
             @click="closeMobileMenu"
           >
             会话查询
+          </RouterLink>
+          <RouterLink
+            to="/miniapp-users"
+            class="nav-link"
+            active-class="nav-link-active"
+            @click="closeMobileMenu"
+          >
+            小程序用户
           </RouterLink>
           <RouterLink
             to="/auth-audits"

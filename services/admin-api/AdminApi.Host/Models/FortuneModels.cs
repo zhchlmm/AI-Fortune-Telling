@@ -175,7 +175,9 @@ public record MiniappLoginByCodeRequest(
 );
 
 public record MiniappLoginByCodeResponse(
-    string OpenId
+    string OpenId,
+    string AccessToken,
+    DateTime ExpiresAt
 );
 
 public record MiniappUserProfileResponse(
@@ -188,7 +190,6 @@ public record MiniappUserProfileResponse(
 );
 
 public record UpdateMiniappUserProfileRequest(
-    string OpenId,
     string? Nickname,
     string? Email,
     string? PhoneNumber,
@@ -196,7 +197,42 @@ public record UpdateMiniappUserProfileRequest(
 );
 
 public record UpdateMiniappUserPhoneRequest(
-    string OpenId,
     string EncryptedData,
     string Iv
+);
+
+public record MiniappErrorResponse(
+    string Code,
+    string Message
+);
+
+public record MiniappProfileAuditDto(
+    Guid Id,
+    string OpenId,
+    string Action,
+    string ChangedFields,
+    DateTime CreatedAt
+);
+
+public record AdminMiniappUserDto(
+    Guid Id,
+    string OpenId,
+    string? Nickname,
+    string? Email,
+    string? PhoneNumber,
+    bool IsBlocked,
+    DateTime UpdatedAt
+);
+
+public record AdminMiniappUserDetailDto(
+    Guid Id,
+    string OpenId,
+    string? Nickname,
+    string? Avatar,
+    string? Email,
+    string? PhoneNumber,
+    bool IsBlocked,
+    DateTime? BlockedAt,
+    DateTime CreatedAt,
+    DateTime UpdatedAt
 );

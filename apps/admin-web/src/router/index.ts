@@ -8,6 +8,7 @@ import ContentCategoryManagementView from '../views/ContentCategoryManagementVie
 import SessionQueryView from '../views/SessionQueryView.vue'
 import AuthAuditView from '../views/AuthAuditView.vue'
 import AiAuditView from '../views/AiAuditView.vue'
+import MiniappUserManagementView from '../views/MiniappUserManagementView.vue'
 import { useAuthStore } from '../stores/auth'
 
 const router = createRouter({
@@ -20,6 +21,7 @@ const router = createRouter({
     { path: '/contents', component: ContentManagementView },
     { path: '/content-categories', component: ContentCategoryManagementView },
     { path: '/sessions', component: SessionQueryView },
+    { path: '/miniapp-users', component: MiniappUserManagementView },
     { path: '/auth-audits', component: AuthAuditView },
     { path: '/ai-audits', component: AiAuditView },
     { path: '/:pathMatch(.*)*', redirect: '/dashboard' },

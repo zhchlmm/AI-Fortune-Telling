@@ -1,22 +1,57 @@
 import { env } from '../env/dev'
+import { clearMiniappAuth, ensureMiniappLogin } from './auth'
 
 type RequestMethod = 'GET' | 'POST' | 'PUT'
 
 type RequestData = WechatMiniprogram.IAnyObject | string | ArrayBuffer
 
 export function request<T>(url: string, method: RequestMethod, data?: RequestData) {
+  return requestWithAuthRetry<T>(url, method, data, false)
+}
+
+function requestWithAuthRetry<T>(
+  url: string,
+  method: RequestMethod,
+  data: RequestData | undefined,
+  hasRetried: boolean,
+) {
   return new Promise<T>((resolve, reject) => {
+    const token = wx.getStorageSync('miniappAccessToken')
+    const header: WechatMiniprogram.IAnyObject = {}
+    if (typeof token === 'string' && token.trim().length > 0) {
+      header.Authorization = `Bearer ${token}`
+    }
+
     wx.request({
       url: `${env.apiBaseUrl}${url}`,
       method,
       data,
+      header,
       success: (res) => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data as T)
           return
         }
 
-        reject(new Error(`Request failed: ${res.statusCode}`))
+        const payload = (res.data ?? {}) as { message?: string; code?: string }
+        const message = typeof payload.message === 'string' && payload.message.trim().length > 0
+          ? payload.message
+          : `Request failed: ${res.statusCode}`
+        const error = new Error(message) as Error & { statusCode?: number; code?: string }
+        error.statusCode = res.statusCode
+        if (typeof payload.code === 'string') {
+          error.code = payload.code
+        }
+
+        if (res.statusCode === 401 && !hasRetried && url !== '/miniapp/users/login-by-code') {
+          clearMiniappAuth()
+          ensureMiniappLogin()
+            .then(() => requestWithAuthRetry<T>(url, method, data, true).then(resolve).catch(reject))
+            .catch(() => reject(error))
+          return
+        }
+
+        reject(error)
       },
       fail: (err) => reject(err),
     })
@@ -93,7 +128,6 @@ export type MiniappUserProfileDto = {
 }
 
 export type UpdateMiniappUserProfilePayload = {
-  openId: string
   nickname?: string
   avatar?: string
   email?: string
@@ -294,16 +328,15 @@ export function getFortuneHistory(userId: string, page = 1, pageSize = 10) {
   )
 }
 
-export function getMiniappUserProfile(openId: string) {
-  return request<MiniappUserProfileDto>(`/miniapp/users/profile?openId=${encodeURIComponent(openId)}`, 'GET')
+export function getMiniappUserProfile() {
+  return request<MiniappUserProfileDto>('/miniapp/users/profile/me', 'GET')
 }
 
 export function updateMiniappUserProfile(payload: UpdateMiniappUserProfilePayload) {
-  return request<MiniappUserProfileDto>('/miniapp/users/profile', 'PUT', payload)
+  return request<MiniappUserProfileDto>('/miniapp/users/profile/me', 'PUT', payload)
 }
 
 export function updateMiniappUserPhoneByEncryptedData(payload: {
-  openId: string
   encryptedData: string
   iv: string
 }) {

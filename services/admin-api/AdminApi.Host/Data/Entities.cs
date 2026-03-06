@@ -154,7 +154,24 @@ public class MiniappUserEntity
 
     public string? PhoneNumber { get; set; }
 
+    public bool IsBlocked { get; set; }
+
+    public DateTime? BlockedAt { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }
+}
+
+public class MiniappProfileAuditEntity
+{
+    public Guid Id { get; set; }
+
+    public string OpenId { get; set; } = string.Empty;
+
+    public string Action { get; set; } = string.Empty;
+
+    public string ChangedFields { get; set; } = string.Empty;
+
+    public DateTime CreatedAt { get; set; }
 }

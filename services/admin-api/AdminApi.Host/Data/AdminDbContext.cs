@@ -22,6 +22,8 @@ public class AdminDbContext(DbContextOptions<AdminDbContext> options) : DbContex
 
     public DbSet<MiniappUserEntity> MiniappUsers => Set<MiniappUserEntity>();
 
+    public DbSet<MiniappProfileAuditEntity> MiniappProfileAudits => Set<MiniappProfileAuditEntity>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<FortuneSessionEntity>().ToTable("FortuneSessions");
@@ -33,6 +35,7 @@ public class AdminDbContext(DbContextOptions<AdminDbContext> options) : DbContex
         modelBuilder.Entity<LoginAuditEntity>().ToTable("LoginAudits");
         modelBuilder.Entity<AiAuditEntity>().ToTable("AiAudits");
         modelBuilder.Entity<MiniappUserEntity>().ToTable("MiniappUsers");
+        modelBuilder.Entity<MiniappProfileAuditEntity>().ToTable("MiniappProfileAudits");
 
         modelBuilder.Entity<ContentCategoryEntity>()
             .HasIndex(x => x.Name)
@@ -75,5 +78,20 @@ public class AdminDbContext(DbContextOptions<AdminDbContext> options) : DbContex
         modelBuilder.Entity<MiniappUserEntity>()
             .Property(x => x.PhoneNumber)
             .HasMaxLength(32);
+
+        modelBuilder.Entity<MiniappProfileAuditEntity>()
+            .Property(x => x.OpenId)
+            .HasMaxLength(128);
+
+        modelBuilder.Entity<MiniappProfileAuditEntity>()
+            .Property(x => x.Action)
+            .HasMaxLength(64);
+
+        modelBuilder.Entity<MiniappProfileAuditEntity>()
+            .Property(x => x.ChangedFields)
+            .HasMaxLength(1024);
+
+        modelBuilder.Entity<MiniappProfileAuditEntity>()
+            .HasIndex(x => x.OpenId);
     }
 }

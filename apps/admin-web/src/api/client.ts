@@ -134,6 +134,29 @@ export type ContentCategoryDto = {
   updatedAt: string
 }
 
+export type AdminMiniappUserDto = {
+  id: string
+  openId: string
+  nickname?: string
+  email?: string
+  phoneNumber?: string
+  isBlocked: boolean
+  updatedAt: string
+}
+
+export type AdminMiniappUserDetailDto = {
+  id: string
+  openId: string
+  nickname?: string
+  avatar?: string
+  email?: string
+  phoneNumber?: string
+  isBlocked: boolean
+  blockedAt?: string
+  createdAt: string
+  updatedAt: string
+}
+
 export async function fetchHealth() {
   const { data } = await apiClient.get<HealthResponse>('/health')
   return data
@@ -332,6 +355,31 @@ export async function updateTemplate(id: string, payload: {
 
 export async function deleteTemplate(id: string) {
   await apiClient.delete(`/templates/${id}`)
+}
+
+export async function fetchPagedMiniappUsers(params: {
+  keyword?: string
+  isBlocked?: boolean
+  page: number
+  pageSize: number
+}) {
+  const { data } = await apiClient.get<PagedResult<AdminMiniappUserDto>>('/admin/miniapp-users', {
+    params,
+  })
+  return data
+}
+
+export async function fetchMiniappUserDetail(id: string) {
+  const { data } = await apiClient.get<AdminMiniappUserDetailDto>(`/admin/miniapp-users/${id}`)
+  return data
+}
+
+export async function blockMiniappUser(id: string) {
+  await apiClient.post(`/admin/miniapp-users/${id}/block`)
+}
+
+export async function unblockMiniappUser(id: string) {
+  await apiClient.post(`/admin/miniapp-users/${id}/unblock`)
 }
 
 export { AUTH_TOKEN_KEY }
